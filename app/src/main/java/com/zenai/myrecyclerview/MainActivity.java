@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zenai.myrecyclerview.adapter.GridHeroAdapter;
 import com.zenai.myrecyclerview.adapter.ListHeroAdapter;
 import com.zenai.myrecyclerview.model.Hero;
 import com.zenai.myrecyclerview.model.HeroesData;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         list.addAll(HeroesData.getListData());
         showRecyclerList();
+        showRecyclerGrid();
     }
 
     @Override
@@ -47,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
     public void setMode(int selectedMode) {
         switch (selectedMode) {
             case R.id.action_list:
-                Toast.makeText(this, "List is Open !", Toast.LENGTH_SHORT).show();
+                showRecyclerList();
                 break;
             case R.id.action_grid:
-                Toast.makeText(this, "Grid is Open !", Toast.LENGTH_SHORT).show();
+                showRecyclerGrid();
                 break;
             case R.id.action_cardview:
                 Toast.makeText(this, "CardView is Open !", Toast.LENGTH_SHORT).show();
@@ -60,7 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void showRecyclerList(){
         rvHeroes.setLayoutManager(new LinearLayoutManager(this));
-        ListHeroAdapter listHeroAdapter= new ListHeroAdapter(list);
+        ListHeroAdapter listHeroAdapter = new ListHeroAdapter(list);
         rvHeroes.setAdapter(listHeroAdapter);
+    }
+
+    private void showRecyclerGrid(){
+        rvHeroes.setLayoutManager(new LinearLayoutManager(this));
+        GridHeroAdapter gridHeroAdapter = new GridHeroAdapter(list);
+        rvHeroes.setAdapter(gridHeroAdapter);
     }
 }
