@@ -1,7 +1,10 @@
 package com.zenai.myrecyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+<<<<<<< HEAD
 import androidx.recyclerview.widget.GridLayoutManager;
+=======
+>>>>>>> 7a7a8af3751588ed7d6cc990ed497c50ee5f682b
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
