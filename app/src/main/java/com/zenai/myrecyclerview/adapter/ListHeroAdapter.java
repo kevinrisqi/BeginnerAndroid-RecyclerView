@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class ListHeroAdapter extends RecyclerView.Adapter<ListHeroAdapter.ListViewHolder> {
     private ArrayList<Hero> listHero;
-
     private OnItemClickCallback onItemClickCallback;
+
 
     public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback;
@@ -73,7 +73,7 @@ public class ListHeroAdapter extends RecyclerView.Adapter<ListHeroAdapter.ListVi
         }
     }
 
-    public interface onItemClickCallback{
+    public interface OnItemClickCallback{
         void onItemClicked(Hero data);
     }
 }
