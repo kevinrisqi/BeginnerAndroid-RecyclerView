@@ -1,10 +1,7 @@
 package com.zenai.myrecyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
-<<<<<<< HEAD
 import androidx.recyclerview.widget.GridLayoutManager;
-=======
->>>>>>> 7a7a8af3751588ed7d6cc990ed497c50ee5f682b
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zenai.myrecyclerview.adapter.CardViewHeroAdapter;
 import com.zenai.myrecyclerview.adapter.GridHeroAdapter;
 import com.zenai.myrecyclerview.adapter.ListHeroAdapter;
 import com.zenai.myrecyclerview.model.Hero;
@@ -26,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvHeroes;
     private ArrayList<Hero> list = new ArrayList<>();
 
+    private String title = "Mode Grid";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         list.addAll(HeroesData.getListData());
         showRecyclerList();
         showRecyclerGrid();
+
+        setActionBarTitle(title);
     }
 
     @Override
@@ -50,18 +52,29 @@ public class MainActivity extends AppCompatActivity {
         setMode(item.getItemId());
         return super.onOptionsItemSelected(item);
     }
+
+    private void setActionBarTitle(String title){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setTitle(title);
+        }
+    }
+
     public void setMode(int selectedMode) {
         switch (selectedMode) {
             case R.id.action_list:
+                title = "Mode List";
                 showRecyclerList();
                 break;
             case R.id.action_grid:
+                title = "Mode Grid";
                 showRecyclerGrid();
                 break;
             case R.id.action_cardview:
-                Toast.makeText(this, "CardView is Open !", Toast.LENGTH_SHORT).show();
+                title = "Mode CardView";
+                showRecyclerCardView();
                 break;
         }
+        setActionBarTitle(title);
     }
 
     private void showRecyclerList(){
@@ -74,5 +87,11 @@ public class MainActivity extends AppCompatActivity {
         rvHeroes.setLayoutManager(new GridLayoutManager(this,2));
         GridHeroAdapter gridHeroAdapter = new GridHeroAdapter(list);
         rvHeroes.setAdapter(gridHeroAdapter);
+    }
+
+    private void showRecyclerCardView(){
+        rvHeroes.setLayoutManager(new LinearLayoutManager(this));
+        CardViewHeroAdapter cardViewHeroAdapter = new CardViewHeroAdapter(list);
+        rvHeroes.setAdapter(cardViewHeroAdapter);
     }
 }
