@@ -77,10 +77,21 @@ public class MainActivity extends AppCompatActivity {
         setActionBarTitle(title);
     }
 
+    private void showSelectedHero(Hero hero) {
+        Toast.makeText(this, "Kamu memilih " + hero.getName(), Toast.LENGTH_SHORT).show();
+    }
+
     private void showRecyclerList(){
         rvHeroes.setLayoutManager(new LinearLayoutManager(this));
         ListHeroAdapter listHeroAdapter = new ListHeroAdapter(list);
         rvHeroes.setAdapter(listHeroAdapter);
+
+        listHeroAdapter.setOnItemClickCallback(new ListHeroAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(Hero data) {
+                showSelectedHero(data);
+            }
+        });
     }
 
     private void showRecyclerGrid(){
